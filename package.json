@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@11ty/eleventy": "^0.12.1",
     "aws-sdk": "^2.991.0",
     "netlify": "^8.0.0"
   }
