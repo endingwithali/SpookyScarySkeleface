@@ -39,7 +39,7 @@ var process = function(img){
             Bytes: img
         },
         Attributes: [
-            'ALL',
+            'BoundingBox',
         ]
     };
     return rekognition.detectFaces(params, function(err, response){

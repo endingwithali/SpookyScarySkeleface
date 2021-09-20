@@ -1,9 +1,10 @@
-$('#submit').click(function(){
+function submit(){
     var file = document.getElementById("fileUpload").files[0]
     const reader = new FileReader();
     if (file) {
+        console.log(file)
         reader.onerror = function(e){
-            //handle error
+            console.log(e)
         }  
         reader.onloadend = function (e) {
             console.log(e.target.result)
@@ -14,6 +15,6 @@ $('#submit').click(function(){
         }
         reader.readAsDataURL(file);
     }
-})
+}
 
 
