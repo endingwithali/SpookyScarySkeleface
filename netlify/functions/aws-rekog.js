@@ -5,21 +5,17 @@ const AWS = require('aws-sdk');
 
 exports.handler = async (event, context) => {
     //console.log('Received event:', JSON.stringify(event, null, 2));
-    //const eventBody = JSON.parse(event.body)
-
-    console.log(context)
-    console.log(event)
+    const eventBody = JSON.parse(event.body)
     let body;
     let statusCode = '200';
     const headers = {
         'Content-Type': 'application/json',
     };
-    console.log("body")
-    console.log(body)
+
     try {
         switch (event.httpMethod) {
             case 'POST':
-                body = process(body);
+                body = process(eventBody.image);
                 break;
             default:
                 throw new Error(`Unsupported method "${event.httpMethod}"`);
@@ -50,7 +46,7 @@ var process = async function(img){
     };
     return boundingbox = await rekognition.detectFaces(params, function(err, response){
         if (err){
-            console.error(e);
+            console.error(err);
             throw "Sparrow!";
         }
         var faces = []
