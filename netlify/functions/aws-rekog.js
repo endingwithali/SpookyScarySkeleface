@@ -1,14 +1,20 @@
 const AWS = require('aws-sdk');
+// require('dotenv')
+// AWS.config(process.env.AWS)
 
 
 exports.handler = async (event, context) => {
     //console.log('Received event:', JSON.stringify(event, null, 2));
+    //const eventBody = JSON.parse(event.body)
 
+    console.log(context)
+    console.log(event)
     let body;
     let statusCode = '200';
     const headers = {
         'Content-Type': 'application/json',
     };
+    console.log("body")
     console.log(body)
     try {
         switch (event.httpMethod) {
