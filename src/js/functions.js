@@ -1,4 +1,4 @@
-function submit(){
+async function submit(){
     var file = document.getElementById("fileUpload").files[0]
     const reader = new FileReader();
     if (file) {
@@ -13,8 +13,22 @@ function submit(){
             document.getElementById("fileUpload").value = ""
 
         }
-        reader.readAsDataURL(file);
+        const imageData = reader.readAsDataURL(file);
+        await modifyImage(imageData)
     }
+    
 }
 
-
+async function modifyImage(imageData){
+    //${process.env.NETLIFY_URL}/.netlify/functions/aws-rekog
+    await fetch(`/.netlify/functions/aws-rekog`, {
+        method: 'post',
+        body: JSON.stringify({
+            image: imageData,
+        }),
+        headers: { 'Content-Type': 'application/json' },
+    })
+    .then((res) => res.json())
+    // .then((response) => {
+    // });
+}

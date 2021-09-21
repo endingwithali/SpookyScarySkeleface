@@ -9,7 +9,7 @@ exports.handler = async (event, context) => {
     const headers = {
         'Content-Type': 'application/json',
     };
-
+    console.log(body)
     try {
         switch (event.httpMethod) {
             case 'POST':
@@ -32,7 +32,7 @@ exports.handler = async (event, context) => {
     };
 };
 
-var process = function(img){
+var process = async function(img){
     var rekognition = new AWS.Rekognition();
     var params = {
         Image: {
@@ -42,9 +42,10 @@ var process = function(img){
             'BoundingBox',
         ]
     };
-    return rekognition.detectFaces(params, function(err, response){
+    return boundingbox = await rekognition.detectFaces(params, function(err, response){
         if (err){
-            //throw an error
+            console.error(e);
+            throw "Sparrow!";
         }
         var faces = []
         response.FaceDetails.forEach(data => {
